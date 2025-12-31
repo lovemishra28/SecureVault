@@ -18,7 +18,8 @@ export interface Credential {
   website?: string | null
   username?: string | null
   customerId?: string | null
-  encryptedData: string
+  encryptedData?: string
+  sensitiveData: EncryptedData
   notes?: string | null
   categoryId: string
   userId: string

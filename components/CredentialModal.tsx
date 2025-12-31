@@ -3,26 +3,7 @@
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faPlus, faTrash, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-import { EncryptedData, CredentialFormData } from '@/types'
-
-interface Category {
-  id: string
-  name: string
-  icon: string
-  color: string
-}
-
-interface Credential {
-  id: string
-  title: string
-  description?: string | null
-  website?: string | null
-  username?: string | null
-  customerId?: string | null
-  notes?: string | null
-  categoryId: string
-  sensitiveData: EncryptedData
-}
+import { EncryptedData, CredentialFormData, Credential, Category } from '@/types'
 
 interface CredentialModalProps {
   isOpen: boolean

@@ -24,7 +24,7 @@ import {
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 import toast from 'react-hot-toast'
-import { EncryptedData } from '@/types'
+import { EncryptedData, Credential } from '@/types'
 
 const iconMap: Record<string, IconDefinition> = {
   'building-columns': faBuildingColumns,
@@ -38,23 +38,6 @@ const iconMap: Record<string, IconDefinition> = {
   key: faKey,
   lock: faLock,
   wallet: faWallet,
-}
-
-interface Credential {
-  id: string
-  title: string
-  description?: string | null
-  website?: string | null
-  username?: string | null
-  customerId?: string | null
-  notes?: string | null
-  sensitiveData: EncryptedData
-  category?: {
-    id: string
-    name: string
-    icon: string
-    color: string
-  }
 }
 
 interface CredentialCardProps {
