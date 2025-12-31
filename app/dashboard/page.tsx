@@ -11,28 +11,7 @@ import { CredentialModal } from '@/components/CredentialModal'
 import { CategoryModal } from '@/components/CategoryModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVault, faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { CredentialFormData, EncryptedData } from '@/types'
-
-interface Category {
-  id: string
-  name: string
-  icon: string
-  color: string
-  _count?: { credentials: number }
-}
-
-interface Credential {
-  id: string
-  title: string
-  description?: string | null
-  website?: string | null
-  username?: string | null
-  customerId?: string | null
-  notes?: string | null
-  categoryId: string
-  sensitiveData: EncryptedData
-  category?: Category
-}
+import { CredentialFormData, EncryptedData, Category, Credential } from '@/types'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
