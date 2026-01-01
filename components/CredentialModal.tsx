@@ -114,15 +114,15 @@ export function CredentialModal({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="flex items-center justify-center min-h-screen px-4">
+      <div className="flex items-center justify-center min-h-screen px-4 py-4">
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm"
           onClick={onClose}
         />
-        <div className="relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slide-up">
+        <div className="relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[95vh] overflow-y-auto animate-slide-up">
           {/* Modal Header */}
-          <div className="sticky top-0 bg-white dark:bg-neutral-900 px-6 py-4 border-b border-gray-200 dark:border-neutral-800 flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+          <div className="sticky top-0 bg-white dark:bg-neutral-900 px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-neutral-800 flex items-center justify-between z-10">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
               {credential ? 'Edit Credential' : 'Add New Credential'}
             </h2>
             <button
@@ -134,14 +134,14 @@ export function CredentialModal({
           </div>
 
           {/* Modal Body */}
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-5 sm:space-y-6">
             {/* Basic Information */}
             <div className="space-y-4">
               <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase">
                 Basic Information
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Title *
@@ -201,7 +201,7 @@ export function CredentialModal({
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Username / User ID
@@ -234,7 +234,7 @@ export function CredentialModal({
                 Sensitive Information (Encrypted)
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {passwordFields.map(({ key, label }) => (
                   <div key={key}>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -316,7 +316,7 @@ export function CredentialModal({
               </div>
 
               {customFields.map((field, index) => (
-                <div key={index} className="flex items-center space-x-2">
+                <div key={index} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                   <input
                     type="text"
                     placeholder="Field name"
@@ -334,7 +334,7 @@ export function CredentialModal({
                   <button
                     type="button"
                     onClick={() => removeCustomField(index)}
-                    className="p-2 text-red-500 hover:text-red-600"
+                    className="p-2 text-red-500 hover:text-red-600 self-center"
                   >
                     <FontAwesomeIcon icon={faTrash} className="w-4 h-4" />
                   </button>
@@ -357,17 +357,17 @@ export function CredentialModal({
             </div>
 
             {/* Actions */}
-            <div className="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200 dark:border-neutral-800">
+            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center sm:justify-end gap-3 pt-4 border-t border-gray-200 dark:border-neutral-800">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
+                className="w-full sm:w-auto px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-6 py-2 bg-gradient-to-r from-amber-400 to-amber-600 text-black font-semibold rounded-lg hover:from-amber-500 hover:to-amber-700 transition-all shadow-lg"
+                className="w-full sm:w-auto px-6 py-2 bg-gradient-to-r from-amber-400 to-amber-600 text-black font-semibold rounded-lg hover:from-amber-500 hover:to-amber-700 transition-all shadow-lg"
               >
                 {credential ? 'Update' : 'Save'}
               </button>

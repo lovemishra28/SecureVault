@@ -22,6 +22,7 @@ export default function DashboardPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const [isCredentialModalOpen, setIsCredentialModalOpen] = useState(false)
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
@@ -178,6 +179,7 @@ export default function DashboardPage() {
         onAddNew={handleAddCredential}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)}
       />
 
       <div className="flex">
@@ -186,9 +188,11 @@ export default function DashboardPage() {
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
           onAddCategory={() => setIsCategoryModalOpen(true)}
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
         />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-4 sm:p-6 md:ml-0">
           {/* Page Title */}
           <div className="mb-6">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">

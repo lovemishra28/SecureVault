@@ -13,6 +13,7 @@ import {
   faKey,
   faLock,
   faWallet,
+  faTimes,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -43,6 +44,8 @@ interface SidebarProps {
   selectedCategory: string | null
   onSelectCategory: (categoryId: string | null) => void
   onAddCategory: () => void
+  isOpen?: boolean
+  onClose?: () => void
 }
 
 export function Sidebar({
@@ -50,18 +53,57 @@ export function Sidebar({
   selectedCategory,
   onSelectCategory,
   onAddCategory,
+  isOpen = true,
+  onClose,
 }: SidebarProps) {
   const totalCredentials = categories.reduce(
     (sum, cat) => sum + (cat._count?.credentials || 0),
     0
   )
 
+  const handleCategorySelect = (categoryId: string | null) => {
+    onSelectCategory(categoryId)
+    // Close sidebar on mobile after selection
+    if (onClose && window.innerWidth < 768) {
+      onClose()
+    }
+  }
+
   return (
-    <aside className="w-64 bg-white dark:bg-neutral-900 border-r border-gray-200 dark:border-neutral-800 min-h-[calc(100vh-4rem)] p-4">
+    <>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={onClose}
+        />
+      )}
+      
+      <aside className={`
+        fixed md:relative inset-y-0 left-0 z-50 md:z-0
+        w-72 md:w-64 bg-white dark:bg-neutral-900 
+        border-r border-gray-200 dark:border-neutral-800 
+        min-h-[calc(100vh-4rem)] p-4
+        transform transition-transform duration-300 ease-in-out
+        ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+        md:transform-none
+        overflow-y-auto
+      `}>
+        {/* Mobile Close Button */}
+        <div className="flex items-center justify-between mb-4 md:hidden">
+          <span className="font-semibold text-gray-900 dark:text-white">Menu</span>
+          <button
+            onClick={onClose}
+            className="p-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+          >
+            <FontAwesomeIcon icon={faTimes} className="w-5 h-5" />
+          </button>
+        </div>
+        
       <nav className="space-y-2">
         {/* All Items */}
         <button
-          onClick={() => onSelectCategory(null)}
+          onClick={() => handleCategorySelect(null)}
           className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all ${
             selectedCategory === null
               ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300'
@@ -87,7 +129,7 @@ export function Sidebar({
         {categories.map((category) => (
           <button
             key={category.id}
-            onClick={() => onSelectCategory(category.id)}
+            onClick={() => handleCategorySelect(category.id)}
             className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all ${
               selectedCategory === category.id
                 ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300'
@@ -117,5 +159,6 @@ export function Sidebar({
         </button>
       </nav>
     </aside>
+    </>
   )
 }

@@ -54,15 +54,15 @@ export function CategoryModal({ isOpen, onClose, onSave }: CategoryModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="flex items-center justify-center min-h-screen px-4">
+      <div className="flex items-center justify-center min-h-screen px-4 py-4">
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm"
           onClick={onClose}
         />
-        <div className="relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl max-w-md w-full animate-slide-up">
+        <div className="relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl w-full max-w-md animate-slide-up">
           {/* Modal Header */}
-          <div className="px-6 py-4 border-b border-gray-200 dark:border-neutral-800 flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+          <div className="px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-neutral-800 flex items-center justify-between">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
               Add New Category
             </h2>
             <button
@@ -74,7 +74,7 @@ export function CategoryModal({ isOpen, onClose, onSave }: CategoryModalProps) {
           </div>
 
           {/* Modal Body */}
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-5 sm:space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Category Name *
@@ -93,20 +93,20 @@ export function CategoryModal({ isOpen, onClose, onSave }: CategoryModalProps) {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Icon
               </label>
-              <div className="grid grid-cols-6 gap-2">
+              <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                 {iconOptions.map((opt) => (
                   <button
                     key={opt.value}
                     type="button"
                     onClick={() => setIcon(opt.value)}
-                    className={`p-3 rounded-lg border-2 transition-all ${
+                    className={`p-2 sm:p-3 rounded-lg border-2 transition-all ${
                       icon === opt.value
                         ? 'border-amber-500 bg-amber-50 dark:bg-amber-900/30'
                         : 'border-gray-200 dark:border-neutral-700 hover:border-gray-300'
                     }`}
                     title={opt.label}
                   >
-                    <span className="text-lg">{opt.label.slice(0, 2)}</span>
+                    <span className="text-sm sm:text-lg">{opt.label.slice(0, 2)}</span>
                   </button>
                 ))}
               </div>
@@ -132,17 +132,17 @@ export function CategoryModal({ isOpen, onClose, onSave }: CategoryModalProps) {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200 dark:border-neutral-800">
+            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center sm:justify-end gap-3 pt-4 border-t border-gray-200 dark:border-neutral-800">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
+                className="w-full sm:w-auto px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-6 py-2 bg-gradient-to-r from-amber-400 to-amber-600 text-black font-semibold rounded-lg hover:from-amber-500 hover:to-amber-700 transition-all shadow-lg"
+                className="w-full sm:w-auto px-6 py-2 bg-gradient-to-r from-amber-400 to-amber-600 text-black font-semibold rounded-lg hover:from-amber-500 hover:to-amber-700 transition-all shadow-lg"
               >
                 Create Category
               </button>

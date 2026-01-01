@@ -66,15 +66,15 @@ export function CredentialCard({ credential, onEdit, onDelete }: CredentialCardP
     if (!value) return null
     
     return (
-      <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-700 last:border-0">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2 border-b border-gray-100 dark:border-gray-700 last:border-0 gap-1 sm:gap-2">
         <span className="text-sm text-gray-500 dark:text-gray-400">{label}</span>
         <div className="flex items-center space-x-2">
-          <span className="font-mono text-sm">
+          <span className="font-mono text-sm break-all">
             {showPasswords[fieldKey] ? value : '••••••••'}
           </span>
           <button
             onClick={() => togglePassword(fieldKey)}
-            className="p-1 text-gray-400 hover:text-amber-500 transition-colors"
+            className="p-1 text-gray-400 hover:text-amber-500 transition-colors flex-shrink-0"
             title={showPasswords[fieldKey] ? 'Hide' : 'Show'}
           >
             <FontAwesomeIcon
@@ -84,7 +84,7 @@ export function CredentialCard({ credential, onEdit, onDelete }: CredentialCardP
           </button>
           <button
             onClick={() => copyToClipboard(value, label)}
-            className="p-1 text-gray-400 hover:text-amber-500 transition-colors"
+            className="p-1 text-gray-400 hover:text-amber-500 transition-colors flex-shrink-0"
             title="Copy"
           >
             <FontAwesomeIcon icon={faCopy} className="w-4 h-4" />
@@ -159,7 +159,7 @@ export function CredentialCard({ credential, onEdit, onDelete }: CredentialCardP
 
         {/* Website Link */}
         {credential.website && (
-          <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-neutral-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2 border-b border-gray-100 dark:border-neutral-800 gap-1 sm:gap-2">
             <span className="text-sm text-gray-500 dark:text-gray-400">Website</span>
             <a
               href={credential.website}
@@ -167,24 +167,24 @@ export function CredentialCard({ credential, onEdit, onDelete }: CredentialCardP
               rel="noopener noreferrer"
               className="flex items-center space-x-1 text-amber-600 dark:text-amber-400 hover:underline text-sm"
             >
-              <span className="truncate max-w-[150px]">{credential.website}</span>
-              <FontAwesomeIcon icon={faExternalLink} className="w-3 h-3" />
+              <span className="truncate max-w-[200px] sm:max-w-[150px]">{credential.website}</span>
+              <FontAwesomeIcon icon={faExternalLink} className="w-3 h-3 flex-shrink-0" />
             </a>
           </div>
         )}
 
         {/* Username */}
         {credential.username && (
-          <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-neutral-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2 border-b border-gray-100 dark:border-neutral-800 gap-1 sm:gap-2">
             <span className="text-sm text-gray-500 dark:text-gray-400">
               <FontAwesomeIcon icon={faUser} className="w-3 h-3 mr-2" />
               Username
             </span>
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium">{credential.username}</span>
+              <span className="text-sm font-medium break-all">{credential.username}</span>
               <button
                 onClick={() => copyToClipboard(credential.username!, 'Username')}
-                className="p-1 text-gray-400 hover:text-amber-500 transition-colors"
+                className="p-1 text-gray-400 hover:text-amber-500 transition-colors flex-shrink-0"
               >
                 <FontAwesomeIcon icon={faCopy} className="w-4 h-4" />
               </button>
@@ -194,16 +194,16 @@ export function CredentialCard({ credential, onEdit, onDelete }: CredentialCardP
 
         {/* Customer ID */}
         {credential.customerId && (
-          <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-neutral-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2 border-b border-gray-100 dark:border-neutral-800 gap-1 sm:gap-2">
             <span className="text-sm text-gray-500 dark:text-gray-400">
               <FontAwesomeIcon icon={faIdCard} className="w-3 h-3 mr-2" />
               Customer ID
             </span>
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium">{credential.customerId}</span>
+              <span className="text-sm font-medium break-all">{credential.customerId}</span>
               <button
                 onClick={() => copyToClipboard(credential.customerId!, 'Customer ID')}
-                className="p-1 text-gray-400 hover:text-amber-500 transition-colors"
+                className="p-1 text-gray-400 hover:text-amber-500 transition-colors flex-shrink-0"
               >
                 <FontAwesomeIcon icon={faCopy} className="w-4 h-4" />
               </button>
