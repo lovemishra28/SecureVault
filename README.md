@@ -2,6 +2,8 @@
 
 A secure, modern Next.js application for storing and managing sensitive information like bank credentials, passwords, and personal documents.
 
+Deployment Link: https://secure-vault-one-phi.vercel.app
+
 ## Features
 
 - 🔒 **Secure Authentication** - User authentication with NextAuth.js and bcrypt password hashing
